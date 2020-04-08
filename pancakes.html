@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pancakes</title>
+
+    <style>
+        body {
+            font-family: Verdana;
+            font-size: 24px;
+            padding: 50px;
+        }
+
+        img {
+            padding-left: 25px;
+            padding-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<label>
+    <input type="checkbox" id="pancakes"/> I am making pancakes
+    <br/>
+    <img src="pancakes.jpg" width="100px">
+</label>
+
+<br/>
+
+<label>
+    <input type="checkbox" id="butter"/> I have butter
+    <br/>
+    <img src="butter.jpg" width="100px">
+</label>
+
+<br/>
+
+<label>
+    <input type="checkbox" id="syrup"/> I have syrup
+    <br/>
+    <img src="syrup.jpg" height="100px">
+</label>
+
+<br/>
+
+<button>Go To Store?</button>
+
+<p id="nested">
+
+</p>
+<p id="noPar">
+
+</p>
+<p id="withPar">
+
+</p>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js">
+</script>
+
+<script>
+    $(init);
+
+    function init() {
+        $("button").click(checkShopping);
+    }
+
+    function checkShopping() {
+        var isMakingPancakes = $("#pancakes").is(":checked");
+        var hasButter = $("#butter").is(":checked");
+        var hasSyrup = $("#syrup").is(":checked");
+
+        var goToStore = false;
+
+        if (isMakingPancakes) {
+            if (!hasButter) {
+                goToStore = true;
+            }
+            if (!hasSyrup) {
+                goToStore = true;
+            }
+        }
+
+        $("#nested").text("Using nested ifs, will I go to the store?  " + goToStore);
+
+        // Reset for next test
+        goToStore = false;
+
+        // Alternative:
+        // var outOfButter = !hasButter;
+        // var outOfSyrup = !hasSyrup;
+
+        if (isMakingPancakes && !hasButter || !hasSyrup) {
+            goToStore = true;
+        }
+
+        $("#noPar").text("Using no parentheses, will I go to the store?  " + goToStore);
+
+        // Reset for next test
+        goToStore = false;
+
+        // Alternative:
+        // if (isMakingPancakes && !(hasButter && hasSyrup))
+
+        if (isMakingPancakes && (!hasButter || !hasSyrup)) {
+            goToStore = true;
+        }
+
+        $("#withPar").text("Using parentheses, will I go to the store?  " + goToStore);
+    }
+</script>
+</html>
