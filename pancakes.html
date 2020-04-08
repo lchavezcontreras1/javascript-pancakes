@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Verdana;
-            font-size: 24px;
+            font-size: 20px;
             padding: 50px;
         }
 
@@ -15,13 +15,18 @@
             padding-left: 25px;
             padding-bottom: 25px;
         }
+
+        span {
+            font-style: italic;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
 
 <label>
-    <input type="checkbox" id="pancakes"/> I am making pancakes
+    <input type="checkbox" id="pancakes"/> I want pancakes
     <br/>
     <img src="pancakes.jpg" width="100px">
 </label>
@@ -46,14 +51,14 @@
 
 <button>Go To Store?</button>
 
-<p id="nested">
-
+<p>
+    Using nested ifs, will I go to the store? <span id="nested"></span>
 </p>
-<p id="noPar">
-
+<p>
+    Using no parentheses, will I go to the store? <span id="noPar"></span>
 </p>
-<p id="withPar">
-
+<p>
+    Using parentheses, will I go to the store? <span id="withPar"></span>
 </p>
 </body>
 
@@ -68,13 +73,13 @@
     }
 
     function checkShopping() {
-        var isMakingPancakes = $("#pancakes").is(":checked");
+        var wantPancakes = $("#pancakes").is(":checked");
         var hasButter = $("#butter").is(":checked");
         var hasSyrup = $("#syrup").is(":checked");
 
         var goToStore = false;
 
-        if (isMakingPancakes) {
+        if (wantPancakes) {
             if (!hasButter) {
                 goToStore = true;
             }
@@ -83,7 +88,7 @@
             }
         }
 
-        $("#nested").text("Using nested ifs, will I go to the store?  " + goToStore);
+        $("#nested").text(goToStore);
 
         // Reset for next test
         goToStore = false;
@@ -92,11 +97,11 @@
         // var outOfButter = !hasButter;
         // var outOfSyrup = !hasSyrup;
 
-        if (isMakingPancakes && !hasButter || !hasSyrup) {
+        if (wantPancakes && !hasButter || !hasSyrup) {
             goToStore = true;
         }
 
-        $("#noPar").text("Using no parentheses, will I go to the store?  " + goToStore);
+        $("#noPar").text(goToStore);
 
         // Reset for next test
         goToStore = false;
@@ -104,11 +109,11 @@
         // Alternative:
         // if (isMakingPancakes && !(hasButter && hasSyrup))
 
-        if (isMakingPancakes && (!hasButter || !hasSyrup)) {
+        if (wantPancakes && (!hasButter || !hasSyrup)) {
             goToStore = true;
         }
 
-        $("#withPar").text("Using parentheses, will I go to the store?  " + goToStore);
+        $("#withPar").text(goToStore);
     }
 </script>
 </html>
